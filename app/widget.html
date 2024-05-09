@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .dropdown-container {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        /* Center the button */
+        .center-btn {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding: 10px;">
+
+        <h2>Select Product</h2>
+
+        <div>
+            <span style="float: right;">
+                <a href="https://crm.zoho.in/crm/org60025391777/tab/Products/create?layoutId=609508000000000177" class="btn btn-info">Add Product</a>
+            </span>
+        </div>
+        <br>
+        <br>
+        <div class="dropdown-container">
+            <label for="productsfilter">Select Category:</label>
+            <select id="productsfilter">
+                <option value="">-- All Category --</option>
+                <option value="Hardware">Hardware</option>
+                <option value="Software">Software</option>
+                <option value="CRM Applications">CRM Applications</option>
+            </select>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Total Selected Rows: <span id="selectedRowCount">0</span></th>
+                </tr>
+                <tr>
+                    <th width="15%">Check</th>
+                    <th>Item Code</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="Product_list">
+                <!-- Rows will be dynamically added after fetching from Zoho CRM -->
+            </tbody>
+        </table>
+
+        <br>
+        <div class="center-btn">
+            <button id="submitBtn" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function updateCount() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            var count = 0;
+
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    count++;
+                }
+            });
+
+            document.getElementById('selectedRowCount').textContent = count;
+        }
+
+        function populateProductRows(products) {
+            var tbody = document.querySelector("tbody");
+            tbody.innerHTML = '';
+
+            products.forEach(function (product) {
+                var row = tbody.insertRow();
+                var checkboxCell = row.insertCell(0);
+                var itemCodeCell = row.insertCell(1);
+                var productNameCell = row.insertCell(2);
+                var priceCell = row.insertCell(3);
+                var quantityCell = row.insertCell(4);
+
+                checkboxCell.innerHTML = '\
+            <input type="hidden" class="product-id" value = "'+ product.id + '">\
+            <input type="checkbox" class="a-product" onchange="updateCount()">';
+                itemCodeCell.textContent = product.Product_Code; // Assuming Product Code is a field in your CRM
+                productNameCell.textContent = product.Product_Name;
+                priceCell.textContent = product.Unit_Price; // Assuming Unit Price is a field in your CRM
+                quantityCell.innerHTML = '\
+            <input type="hidden" class="product-price" value = "'+ product.Unit_Price + '">\
+            <input type="number" class="product-quentity" value="1">';
+
+                // var row = $(`<tr>
+                //     <td><input type="checkbox" onchange="updateCount()"></td>
+                //     <td> `+ product.Product_Code + `</td>
+                //     <td>`+ product.Product_Name +`</td>
+                //     <td>`+ product.Unit_Price +`</td>
+                //     <td><input type="number" value="1"></td>
+                // </tr>`);
+                // tbody.append(row);
+            });
+        }
+
+        function filterTable() {
+            var selectedProduct = document.getElementById("products").value.toLowerCase();
+            var table = document.querySelector("table");
+            var rows = table.querySelectorAll("tbody tr");
+
+            rows.forEach(function (row) {
+                var productName = row.cells[2].textContent.toLowerCase(); // Assuming Product Name is in the third column
+                row.style.display = productName === selectedProduct ? "" : "none";
+            });
+
+            updateCount(); // Update the count after filtering
+        }
+
+        $(document).ready(function () {
+            ZOHO.embeddedApp.on("PageLoad", function (initial_data) {
+                console.log("initial_data");
+                console.log(initial_data);
+
+                var deal_id = initial_data.EntityId, module = initial_data.Entity;
+                deal_id = deal_id[0];
+
+
+                var Deal_Products_Details = {};
+
+                console.log("deal_id");
+                console.log(deal_id);
+
+                var func_name = "Product_Widgets";
+
+                var params = {
+                    deal_id: deal_id,
+                };
+
+                console.log('params');
+                console.log(params);
+
+                var req_data = {
+                    "arguments": JSON.stringify({
+                        "params": params
+                    })
+                };
+                ZOHO.CRM.FUNCTIONS.execute(func_name, req_data)
+                    .then(function (deal_res) {
+
+                        console.log("deal_res");
+                        console.log(deal_res);
+
+                        var output_code = deal_res.code;
+                        //   // console.log("output_code");
+                        //   // console.log(output_code);
+
+                        if (output_code == "success") {
+
+                            var final_res = deal_res.details.output;
+                            final_res = JSON.parse(final_res);
+                            console.log("final_res");
+                            console.log(final_res);
+
+                            var res_status = final_res.status;
+
+                            if (res_status == "success") {
+                                var deal_data = final_res.data;
+                                Deal_Products_Details_list = deal_data.Products_Details;
+
+                                if (Deal_Products_Details_list.length > 0) {
+
+                                    $.each(Deal_Products_Details_list, function (index, product) {
+
+                                        Deal_Products_Details[product.Product.id] = {
+                                            "Product": {
+                                                "id": product.Product.id,
+                                            },
+                                            "Unit_Price": product.Unit_Price,
+                                            "Quantity": product.Quantity
+                                        };
+                                    });
+                                }
+
+                                console.log("Deal_Products_Details");
+                                console.log(Deal_Products_Details);
+
+
+                                //  ZOHO.CRM.UI.Popup.closeReload();
+                            }
+                        }
+
+                    });
+
+
+                ZOHO.CRM.API.getAllRecords({ Entity: "Products", sort_order: "asc", per_page: 10, page: 1 })
+                .then(function (products_data) {
+                    console.log("products_data");
+                    console.log(products_data);
+                    populateProductRows(products_data.data);
+                });
+
+
+
+
+
+                $("#productsfilter").on("change", function () {
+                    var  category_title = $("#productsfilter").val();
+
+
+                    if (category_title != "") {
+                        ZOHO.CRM.API.searchRecord({Entity:"Products",Type:"criteria",Query:"(Product_Category:equals:"+category_title+")"})
+                        .then(function(products_data){
+                            console.log("products_data");
+                            console.log(products_data);
+                            populateProductRows(products_data.data);
+                        })
+                    } else {
+
+                        ZOHO.CRM.API.getAllRecords({ Entity: "Products", sort_order: "asc", per_page: 10, page: 1 })
+                        .then(function (products_data) {
+                            console.log("products_data");
+                            console.log(products_data);
+                            populateProductRows(products_data.data);
+                        });
+                        
+                    }
+
+                });
+
+
+
+
+
+                $("#submitBtn").on("click", function () {
+
+                    // function submitProducts() {
+                    // Add your submit logic here
+                    console.log('Submitting products...');
+
+
+                    var Products_Details_list = [];
+                    var Products_update_ids = [];
+
+                    var product_id = "";
+                    var product_check_box = "";
+                    var product_price = "";
+                    var product_quentity = "";
+
+                    $("#Product_list .a-product:checked").each(function (index) {
+                        // product_id = $( this ).val();
+
+                        product_id = $("#Product_list .product-id").eq(index).val();
+                        product_price = $("#Product_list .product-price").eq(index).val();
+                        product_quentity = $("#Product_list .product-quentity").eq(index).val();
+
+
+                        // console.log("index: "+index+ ", product_quentity: "+ product_quentity);
+
+
+                        Products_update_ids[product_id] = product_id;
+
+                        var a_Product_Details = {
+                            "Product": {
+                                "id": product_id,
+                            },
+                            "Unit_Price": product_price,
+                            "Quantity": product_quentity
+                        }
+
+                        Products_Details_list.push(a_Product_Details);
+
+                    });
+
+
+
+
+
+
+                    console.log("Products_Details_list");
+                    console.log(Products_Details_list);
+
+
+                    $.each(Deal_Products_Details, function (index, a_product) {
+                        testArray = index in Products_update_ids;
+
+                        if (testArray) {
+                            console.log("Avilable");
+                        } else {
+                            // console.log("Not Avilable");
+
+                            Products_Details_list.push(a_product);
+                        }
+                    });
+
+
+
+
+                    console.log("Products_Details_list with update data");
+                    console.log(Products_Details_list);
+
+
+
+
+
+                    var config = {
+                        Entity: "Deals",
+                        APIData: {
+                            "id": deal_id,
+                            "Products_Details": Products_Details_list
+                        }
+                    }
+
+                    // return;
+
+                    ZOHO.CRM.API.updateRecord(config)
+                        .then(function (data) {
+                            console.log("Updated data");
+                            console.log(data);
+
+                            ZOHO.CRM.UI.Popup.closeReload();
+                        });
+                    // }
+
+                });
+
+
+
+
+
+
+
+            });
+
+            ZOHO.embeddedApp.init();
+        });
+    </script>
+
+</body>
+
+</html>

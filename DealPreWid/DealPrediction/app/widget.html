@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deal Prediction Result</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background-color: #a0a4a8;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+    }
+
+    .btn-close {
+      background-color: red;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-close:hover {
+      background-color: #d90000;
+    }
+
+    .result-container {
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .result-text {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      color: red;
+      text-transform: capitalize;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+        margin-top: 20px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .result-text {
+        font-size: 28px;
+      }
+    }
+
+    .result-danger {
+      color: red;
+    }
+
+    .result-success {
+      color: green;
+    }
+
+    .card {
+      background-color: #ffc107;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .card-text {
+      font-size: 14px;
+    }
+
+    /* Custom styles for card columns */
+    @media (min-width: 768px) {
+      .card-columns {
+        column-count: 2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Deal Prediction Result</h1>
+      <button id="closeButton" class="btn btn-close"></button>
+    </div>
+    <div class="result-container">
+      <p class="result-text text-center">On this stage, deal prediction is not possible.</p>
+      <div class="card-columns" id="dealDetails">
+        <!-- Cards will be dynamically added here based on the deal data -->
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      let parentData;
+      let dealId;
+
+      ZOHO.embeddedApp.on("PageLoad", function (initial_data) {
+        console.log("Initial data", initial_data);
+        parentData = initial_data.Data;
+        dealId = initial_data.EntityId;
+        console.log(dealId);
+        updateData(dealId);
+
+      });
+
+      function updateData(dealId) {
+        ZOHO.CRM.API.getRecord({
+            Entity: "Deals",
+            RecordID: dealId
+          })
+          .then(function (data) {
+            console.log(data)
+            const dealData = data.data;
+            showPrediction(dealData);
+          })
+      }
+
+      function showPrediction(dealData) {
+        const stage = dealData[0].Stage;
+        let predictionResult = '';
+        if (stage == "Qualification" || stage == "Needs Analysis") {
+          $(".result-text").text("!!!Oops On this stage, deal prediction is not valid due to insufficient data.");
+        } else {
+          const result = dealData[0].Deal_Prediction;
+          const amount = dealData[0].Amount;
+          const probability = dealData[0].Probability;
+          const leadSource = dealData[0].Lead_Source;
+          const type = dealData[0].Type;
+          const duration = dealData[0].Sales_Cycle_Duration;
+          predictionResult = "Please wait.......";
+
+          if (result.includes("lost")) {
+            predictionResult = "As per the prediction the deal is likely to be closed lost.";
+            $(".result-text").addClass("result-danger");
+          } else if (result.includes("won")) {
+            predictionResult = "Congratulations, As per the prediction the deal is likely to be closed won.";
+            $(".result-text").addClass("result-success");
+          }
+          $(".result-text").text(predictionResult);
+
+          // Update card values
+          const cardHtml = `<div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Amount</h5>
+                                <p class="card-text amount-value">${amount}</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Stage</h5>
+                                <p class="card-text stage-value">${stage}</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Probability</h5>
+                                <p class="card-text probability-value">${probability}</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Sales Cycle Duration</h5>
+                                <p class="card-text duration-value">${duration}</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Lead Source</h5>
+                                <p class="card-text lead-source-value">${leadSource}</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Type</h5>
+                                <p class="card-text type-value">${type}</p>
+                              </div>
+                            </div>`;
+          $('#dealDetails').html(cardHtml);
+        }
+      }
+
+      // Close button click event handler
+      $('#closeButton').click(async function () {
+        try {
+          // Execute ZOHO.CRM.BLUEPRINT.proceed() and wait for it to complete
+          const result = await ZOHO.CRM.BLUEPRINT.proceed();
+          console.log("Transition proceeded:", result);
+
+          // Close the UI after the transition is completed
+          const closeResult = await ZOHO.CRM.UI.Popup.close();
+          console.log("UI closed:", closeResult);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
+
+      ZOHO.embeddedApp.init();
+
+    });
+  </script>
+</body>
+
+</html>
