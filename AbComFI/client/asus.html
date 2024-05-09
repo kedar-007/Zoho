@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        /* ---------------------------------------------------------------------- */
+
+        /* Styles for Header */
+        .header1 {
+            background-color: #1438a1;
+            color: #fff;
+            padding: 15px 150px;
+            display: flex;
+            justify-content: flex-end;
+            /* Aligns items to the right */
+            align-items: center;
+        }
+
+        /* Styles for Partner Box */
+        .partner-options {
+            display: flex;
+            justify-content: flex-start;
+            /* Aligns items to the left */
+            font-size: 20px;
+        }
+
+        .partner-box {
+            background-color: #ffffff;
+            /* White background */
+            padding: 10px 20px;
+            /* Adjust padding as needed */
+            border-radius: 5px;
+            /* Rounded corners */
+            margin-right: 10px;
+            /* Adjust spacing between boxes */
+        }
+
+        .partner-box a {
+            color: #1438a1;
+            /* Text color */
+            text-decoration: none;
+        }
+
+        .partner-box:hover {
+            background-color: #2bc416;
+            /* Light gray background on hover */
+        }
+
+        /* ---------------------------------------------------------------------- */
+        /* Styles for Header */
+        .header2 {
+            display: flex;
+            justify-content: space-between;
+            /* Align items to the start and end of the container */
+            align-items: center;
+            /* Vertically center items within the container */
+            background-color: #ffffff;
+            /* Background color */
+            color: #8b0b0b;
+            /* Text color */
+            padding: 0px 0px;
+            /* Padding around the content */
+        }
+
+        .logo {
+            flex: 0 0 auto;
+            /* Ensure the logo does not grow or shrink */
+        }
+
+        .logo img {
+            width: 200px;
+            /* Width of the logo image */
+            height: 70px;
+        }
+
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            display: inline-block;
+            margin-right: 20px;
+            /* Adjust spacing between menu items */
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #272626;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: background-color 0.5s ease, color 0.3s ease;
+            /* Smooth transition on hover */
+        }
+
+        .navbar li a:hover {
+            background-color: #222f57;
+            /* Change background color on hover */
+            color: #fff;
+            /* Change text color on hover */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            /* Background color of dropdown */
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            /* Box shadow for dropdown */
+            border-radius: 5px;
+            /* Rounded corners */
+            padding: 10px;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: #333;
+            /* Text color */
+            text-decoration: none;
+            padding: 8px 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Smooth transition on hover */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            /* Background color on hover */
+            color: #000;
+            /* Text color on hover */
+        }
+
+        /* Styles for Dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            /* Background color of dropdown */
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            /* Box shadow for dropdown */
+            z-index: 1;
+            /* Ensure dropdown appears above other content */
+        }
+
+        .dropdown-content li {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #000000;
+            /* Text color */
+            padding: 10px 20px;
+            /* Add padding around the text */
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Smooth transition on hover */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            /* Background color on hover */
+            color: #000000;
+            /* Text color on hover */
+        }
+
+        .navbar li:hover .dropdown-content {
+            display: block;
+            /* Show dropdown on hover */
+        }
+
+        /* ---------@@@@@@@@------@@@@@-----@@@@@-----@@@@@---------------------- */
+        /* Styles for Request Call Back */
+        .request-call {
+            margin-right: 20px;
+            /* Adjust margin as needed */
+        }
+
+        .request-call a {
+            background-color: #1438a1;
+            /* Background color */
+            color: #fff;
+            /* Text color */
+            padding: 10px 20px;
+            /* Padding around the text */
+            border-radius: 20px;
+            /* Rounded corners */
+            text-decoration: none;
+            /* Remove underline */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Smooth transition on hover */
+        }
+
+        .request-call a:hover {
+            background-color: #0d640d;
+            /* Darker background color on hover */
+        }
+
+        /* popup form */
+        /* Styles for the blurred background */
+        .blurred-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black background */
+            backdrop-filter: blur(5px);
+            /* Apply blur effect */
+            z-index: 9998;
+            /* Ensure the background is behind the popup */
+        }
+
+        .blurred-background.active {
+            display: block;
+            /* Show the blurred background when active */
+        }
+
+        /* Styles for Popup form */
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            /* Ensure the popup is above other elements */
+            width: 400px;
+            /* Adjust the width as needed */
+            max-width: 90%;
+            /* Set a maximum width to ensure responsiveness */
+
+        }
+
+        .popup-form h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* ------------------------------------------------------------------- */
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        .left-section {
+            flex: 0 0 100%;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .right-section {
+            flex: 0 0 calc(65% - 40px); /* 65% width minus margins */
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .product-search {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: #333;
+        }
+        .price-range {
+            width: 93%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .filter-options {
+            margin-bottom: 20px;
+        }
+        .filter-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .product-box {
+            width: calc(50% - 20px); /* 50% width minus margins */
+            padding: 10px;
+            margin: 10px;
+            background-color: #f0f0f0; /* Light gray background */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center; /* Center-align content */
+        }
+        .product-box img {
+            width: 70%; /* Reduce image size */
+            height: auto;
+            border-radius: 50%; /* Make image round */
+            display: block;
+            margin: 0 auto; /* Center-align image */
+        }
+        .product-info {
+            padding: 10px;
+        }
+        .product-name {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        .product-description {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            color: #008cba;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .add-to-cart {
+            background-color: #008cba;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .add-to-cart:hover {
+            background-color: #005f74;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (min-width: 768px) {
+            .container {
+                flex-wrap: nowrap;
+            }
+            .left-section {
+                flex: 0 0 30%;
+                margin-bottom: 0;
+            }
+            .right-section {
+                flex: 0 0 calc(70% - 40px); /* 70% width minus margins */
+            }
+            .product-box {
+                width: calc(33.33% - 20px); /* 33.33% width minus margins */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .product-box {
+                width: calc(50% - 20px); /* 50% width minus margins */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blurred-background"></div>
+    <!-- Header 1 -->
+    <header class="header1">
+        <!-- Your existing header content here -->
+        <div class="partner-options">
+            <div class="partner-box">
+                <a href="#">Become a Partner</a>
+            </div>
+            <div class="partner-box">
+                <a href="#">Partner Login</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Header 2 -->
+
+    <header class="header2">
+        <div class="logo">
+            <img src="images/main-logo.png" alt="Your Logo">
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Laptops</a>
+                    <ul class="dropdown-content">
+                        <li><a href="acer.html">Acer</a></li>
+                        <li><a href="apple.html">Apple</a></li>
+                        <li><a href="asus.html">Asus</a></li>
+                        <li><a href="dell.html">Dell</a></li>
+                        <li><a href="hp.html">HP</a></li>
+                        <li><a href="lenovo.html">Lenovo</a></li>
+                        <li><a href="mihorizon.html">MI Horizon</a></li>
+                        <li><a href="msi.html">MSI</a></li>
+                    </ul>
+                </li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact_us.html">Contact Us</a></li>
+                <li><a href="add_to_cart.html">Add to Cart</a></li>
+            </ul>
+        </nav>
+        <div class="request-call">
+            <a href="#">Request a Call Back</a>
+        </div>
+    </header>
+
+    <!-- Popup form -->
+    <div id="popup-form" class="popup-form">
+        <form id="call-back-form">
+            <h2>Request a Call Back</h2>
+            <div class="form-group">
+                <label for="customer-type">Customer Type:</label>
+                <select id="customer-type" name="customer-type" required>
+                    <option value="none">Select</option>
+                    <option value="company">Company</option>
+                    <option value="individuals">Individuals</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number (Indian +91):</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{12}" required>
+            </div>
+            <button type="submit">Submit</button>
+            <button type="button" id="close-popup">Close</button>
+        </form>
+    </div>
+    <!-- ------------------------------------------------------------------- -->
+    <div class="container">
+        <div class="left-section">
+            <h2>Filters</h2>
+            <div class="filter-options">
+                <h3 class="filter-title">Product Search</h3>
+                <input type="text" class="product-search" placeholder="Search...">
+            </div>
+            <div class="filter-options">
+                <h3 class="filter-title">Price Range</h3>
+                <input type="range" class="price-range" min="500" max="25000" value="12500" step="500">
+                <span id="priceOutput">₹12500.00</span>
+            </div>
+        </div>
+        <div class="right-section" id="productList">
+            <!-- Product boxes will be displayed here based on the selected price range and search -->
+        </div>
+    </div>
+
+    <script>
+        // Popup "Request a Call Back" form
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the popup form element
+    var popupForm = document.getElementById("popup-form");
+
+    // Get the "Request a Call Back" link
+    var requestCallLink = document.querySelector(".request-call a");
+
+    // Get the close button inside the popup form
+    var closeButton = document.getElementById("close-popup");
+
+    // Function to toggle the visibility of the popup form
+    function togglePopupForm() {
+        popupForm.style.display = (popupForm.style.display === "block") ? "none" : "block";
+    }
+
+    // Event listener for the "Request a Call Back" link
+    requestCallLink.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+        togglePopupForm(); // Toggle the visibility of the popup form
+    });
+
+    // Event listener for the close button inside the popup form
+    closeButton.addEventListener("click", function () {
+        togglePopupForm(); // Toggle the visibility of the popup form
+    });
+
+    // Submit form handling
+    var callBackForm = document.getElementById("call-back-form");
+    callBackForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+        // You can handle form submission here, like sending data to the server
+        // For demonstration purposes, you can simply log the form data
+        console.log("Form submitted!");
+        console.log("Customer Type:", callBackForm['customer-type'].value);
+        console.log("First Name:", callBackForm['first-name'].value);
+        console.log("Last Name:", callBackForm['last-name'].value);
+        console.log("Email:", callBackForm['email'].value);
+        console.log("Phone Number:", callBackForm['phone'].value);
+        // Close the popup form after submission
+        togglePopupForm();
+    });
+});
+// {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+// Blus popup form
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the blurred background element
+    var blurredBackground = document.querySelector(".blurred-background");
+
+    // Function to toggle the visibility of the blurred background
+    function toggleBlurredBackground() {
+        blurredBackground.classList.toggle("active");
+    }
+
+    // Get the "Request a Call Back" link
+    var requestCallLink = document.querySelector(".request-call a");
+
+    // Get the close button inside the popup form
+    var closeButton = document.getElementById("close-popup");
+
+    // Event listener for the "Request a Call Back" link
+    requestCallLink.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+        toggleBlurredBackground(); // Toggle the visibility of the blurred background
+        togglePopupForm(); // Toggle the visibility of the popup form
+    });
+
+    // Event listener for the close button inside the popup form
+    closeButton.addEventListener("click", function () {
+        toggleBlurredBackground(); // Toggle the visibility of the blurred background
+        togglePopupForm(); // Toggle the visibility of the popup form
+    });
+});
+
+        // Sample product data, replace it with your actual data source
+        const products = [
+            { name: 'Asus', price: 3000, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 3500, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 4000, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 4500, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 3500, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 3000, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 3000, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 4000, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 4500, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            { name: 'Asus', price: 2500, description: 'ASUS Vivobook Pro', image: 'images/ASUS laptop.jpg' },
+            
+            // Add more products as needed
+        ];
+
+        // Function to display products based on price range and search query
+        function displayProducts(minPrice, maxPrice, query) {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = ''; // Clear previous products
+
+            products.forEach(product => {
+                if ((product.price >= minPrice && product.price <= maxPrice) && (product.name.toLowerCase().includes(query.toLowerCase()) || product.description.toLowerCase().includes(query.toLowerCase()))) {
+                    const productBox = document.createElement('div');
+                    productBox.className = 'product-box';
+
+                    const productImg = document.createElement('img');
+                    productImg.src = product.image;
+                    productImg.alt = product.name;
+
+                    const productInfo = document.createElement('div');
+                    productInfo.className = 'product-info';
+
+                    const productName = document.createElement('h3');
+                    productName.className = 'product-name';
+                    productName.textContent = product.name;
+
+                    const productDescription = document.createElement('p');
+                    productDescription.className = 'product-description';
+                    productDescription.textContent = product.description;
+
+                    const productPrice = document.createElement('p');
+                    productPrice.className = 'product-price';
+                    productPrice.textContent = `₹${product.price.toFixed(2)}`; // Display price in INR
+
+                    const addToCartBtn = document.createElement('button');
+                    addToCartBtn.className = 'add-to-cart';
+                    addToCartBtn.textContent = 'Add to Cart';
+                    addToCartBtn.addEventListener('click', function() {
+                        addToCart(product);
+                    });
+
+                    productInfo.appendChild(productName);
+                    productInfo.appendChild(productDescription);
+                    productInfo.appendChild(productPrice);
+                    productInfo.appendChild(addToCartBtn);
+
+                    productBox.appendChild(productImg);
+                    productBox.appendChild(productInfo);
+
+                    productList.appendChild(productBox);
+                }
+            });
+        }
+
+        // Initial display
+        displayProducts(0, 25000, ''); // Display all products initially
+
+        // Event listener for price range change
+        const priceRange = document.querySelector('.price-range');
+        const priceOutput = document.getElementById('priceOutput');
+        priceRange.addEventListener('input', function() {
+            const selectedPrice = parseInt(this.value);
+            priceOutput.textContent = `₹${selectedPrice.toFixed(2)}`;
+
+            // Display products based on the selected price range and search query
+            const searchQuery = document.querySelector('.product-search').value;
+            displayProducts(0, selectedPrice, searchQuery);
+        });
+
+        // Event listener for search box input
+        const productSearch = document.querySelector('.product-search');
+        productSearch.addEventListener('input', function() {
+            const searchQuery = this.value;
+            const selectedPrice = parseInt(priceRange.value);
+            displayProducts(0, selectedPrice, searchQuery);
+        });
+
+        // Function to add product to cart
+        function addToCart(product) {
+            alert(`Added ${product.name} to cart!`); // Replace with your actual add to cart functionality
+        }
+    </script>
+</body>
+</html>

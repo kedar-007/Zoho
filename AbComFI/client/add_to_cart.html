@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Colorful Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <!-- Blurred background -->
+    <div class="blurred-background"></div>
+
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Header 1 -->
+    <header class="header1">
+        <!-- Your existing header content here -->
+        <div class="partner-options">
+            <div class="partner-box">
+                <a href="#">Become a Partner</a>
+            </div>
+            <div class="partner-box">
+                <a href="#">Partner Login</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Header 2 -->
+    <header class="header2">
+        <div class="logo">
+            <img src="images/main-logo.png" alt="Your Logo">
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Laptops</a>
+                    <ul class="dropdown-content">
+                        <li><a href="acer.html">Acer</a></li>
+                        <li><a href="apple.html">Apple</a></li>
+                        <li><a href="asus.html">Asus</a></li>
+                        <li><a href="dell.html">Dell</a></li>
+                         <li><a href="hp.html">HP</a></li>
+                        <li><a href="lenovo.html">Lenovo</a></li>
+                        <li><a href="mihorizon.html">MI Horizon</a></li>
+                        <li><a href="msi.html">MSI</a></li>
+                    </ul>
+                </li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact_us.html">Contact Us</a></li>
+                <li><a href="add_to_cart.html">Add to Cart</a></li>
+            </ul>
+        </nav>
+        <div class="request-call">
+            <a href="#">Request a Call Back</a>
+        </div>
+    </header>
+
+    <!-- Popup form -->
+    <div id="popup-form" class="popup-form">
+        <form id="call-back-form">
+            <h2>Request a Call Back</h2>
+            <div class="form-group">
+                <label for="customer-type">Customer Type:</label>
+                <select id="customer-type" name="customer-type" required>
+                    <option value="none">Select</option>
+                    <option value="company">Company</option>
+                    <option value="individuals">Individuals</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number (Indian +91):</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{12}" required>
+            </div>
+            <button type="submit">Submit</button>
+            <button type="button" id="close-popup">Close</button>
+        </form>
+    </div>
+
+
+    <!-- -------------------------------------------------------------------------------------- -->
+
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><img src="images/facebook.png" alt="Social Icons"></a>
+            <a href="#"><img src="images/twitter.png" alt="Social Icons"></a>
+            <a href="#"><img src="images/instagram.png" alt="Social Icons"></a>
+            <a href="#"><img src="images/youtube.png" alt="Social Icons"></a>
+        </div>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Blog</a>
+            <a href="#">FAQ's</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms and Conditions</a>
+        </div>
+        <p>&copy; ©2024 ABCOM.in | All Rights Reserved ABcom Private Limited</p>
+    </footer>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>

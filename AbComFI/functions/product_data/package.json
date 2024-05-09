@@ -1,0 +1,10 @@
+{
+	"name": "product_data",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "support@fidigital.com.au",
+	"dependencies": {
+		"@zohocrm/nodejs-sdk-2.0": "^6.1.0",
+		"zcatalyst-sdk-node": "latest"
+	}
+}

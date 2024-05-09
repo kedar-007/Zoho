@@ -1,0 +1,11 @@
+{
+	"deployment": {
+		"name": "product_data",
+		"stack": "node18",
+		"type": "event",
+		"env_variables": {}
+	},
+	"execution": {
+		"main": "index.js"
+	}
+}

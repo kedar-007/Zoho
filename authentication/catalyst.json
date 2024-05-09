@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "targets": [
+      "authorization_portal_function"
+    ],
+    "ignore": [],
+    "source": "functions"
+  },
+  "client": {
+    "source": "client"
+  }
+}

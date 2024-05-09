@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "2958000000032807",
+      "name": "AuthorizationPortal",
+      "domain": {
+        "id": "50018800537",
+        "name": "authorizationportal-60026838479.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60026838479",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

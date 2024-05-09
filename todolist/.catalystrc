@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "2958000000032008",
+      "name": "ToDoList",
+      "domain": {
+        "id": "50018796679",
+        "name": "todolist-60026838479.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60026838479",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

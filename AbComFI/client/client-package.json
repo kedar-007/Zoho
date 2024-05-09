@@ -1,0 +1,7 @@
+{
+    "name": "ABCom",
+    "version": "0.0.1",
+    "homepage": "index.html",
+    "login" : "/__catalyst/auth/login", 
+    "login_redirect" : "login.html"
+}

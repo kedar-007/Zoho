@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "2958000000038281",
+      "name": "LeadManager",
+      "domain": {
+        "id": "50018810978",
+        "name": "leadmanager-60026838479.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60026838479",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

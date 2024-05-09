@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "targets": [
+      "abcomlead",
+      "authorized_portal_function",
+      "product_data"
+    ],
+    "ignore": [],
+    "source": "functions"
+  },
+  "client": {
+    "source": "client"
+  }
+}

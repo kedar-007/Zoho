@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body onload="showProfile()">
+    <div class="header">
+        <h1>User Profile Information</h1>
+        <button class="button" onclick="logout()">Logout</button>
+    </div>
+    <div class="container">
+        <div class="user-details-container">
+            <div class="user-details-card">
+                <div class="card-header">User Profile</div>
+                <div class="card-body">
+                    <div class="user-profile">
+                        <img src="https://cdn2.iconfinder.com/data/icons/user-management/512/profile_settings-512.png" alt="Profile Picture">
+                        <div class="user-details">
+                            <p id="fname">John</p>
+                            <p id="lname">Doe</p>
+                            <p id="mailid">john@example.com</p>
+                            <p id="tzone">Time Zone: GMT+5:30</p>
+                            <p id="ctime">Joined On: January 1, 2023</p>
+                            <p>Address: 1234 Main St, City, Country</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">User Details</div>
+            </div>
+        </div>
+        <div class="order-details-container">
+            <div class="order-details-card">
+                <div class="card-header">Order Details</div>
+                <div class="card-body" id="orders-container">
+                    <!-- Order details will be populated here -->
+                </div>
+                <div class="card-footer">Total Orders</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call the showOrders() function to display order details -->
+    <script src="login.js"></script>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/4.0.0/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
+    <script>
+        showOrders();
+    </script>
+</body>
+</html>

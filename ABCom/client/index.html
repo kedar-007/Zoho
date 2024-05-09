@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Colorful Website</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/2.0.0/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+</head>
+
+<body>
+    <!-- Blurred background -->
+    <div class="blurred-background"></div>
+
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Header 1 -->
+    <header class="header1">
+        <!-- Your existing header content here -->
+        <div class="partner-options">
+            <div class="partner-box">
+                <a href="#">Become a Partner</a>
+            </div>
+            <div class="partner-box">
+                <a href="#">Partner Login</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Header 2 -->
+    <header class="header2">
+        <div class="logo">
+            <img src="images/main-logo.png" alt="Your Logo">
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Laptops</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Acer</a></li>
+                        <li><a href="#">Apple</a></li>
+                        <li><a href="#">Asus</a></li>
+                        <li><a href="#">Dell</a></li>
+                        <li><a href="#">HP</a></li>
+                        <li><a href="#">Lenovo</a></li>
+                        <li><a href="#">MI Horizon</a></li>
+                        <li><a href="#">MSI</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Add to Cart</a></li>
+            </ul>
+        </nav>
+        <div class="request-call">
+            <a href="#">Request a Call Back</a>
+        </div>
+    </header>
+
+    <!-- Popup form -->
+    <div id="popup-form" class="popup-form">
+        <form id="call-back-form">
+            <h2>Request a Call Back</h2>
+            <div class="form-group">
+                <label for="customer-type">Customer Type:</label>
+                <select id="customer-type" name="customer-type" required>
+                    <option value="none">Select</option>
+                    <option value="company">Company</option>
+                    <option value="individuals">Individuals</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number (Indian +91):</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <button type="submit">Submit</button>
+            <button type="button" id="close-popup">Close</button>
+        </form>
+    </div>
+
+
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Image Section3 -->
+    <section class="image-section">
+        <img src="images/laptop-murjp1nk4lp1idlt.jpg" alt="Your Image">
+        <div class="image-text">
+            <div class="image-text">
+                <p class="small-text1">Tech Trends Unleashed</p>
+                <p class="big-text2">Explore Our Laptop Selections</p>
+                <p class="small-text3">Your third sentence here.</p>
+            </div>
+        </div>
+    </section>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Brand Section -->
+    <section class="brand-section">
+        <h2 class="brand-section-heading">Explore By Brands</h2>
+        <div class="brand-container">
+            <img src="images/apple.png" alt="Brand 1">
+            <p class="brand-name">Apple</p>
+        </div>
+        <div class="brand-container">
+            <img src="images/hp.png" alt="Brand 2">
+            <p class="brand-name">HP</p>
+        </div>
+        <div class="brand-container">
+            <img src="images/Dell.png" alt="Brand 3">
+            <p class="brand-name">Dell</p>
+        </div>
+        <div class="brand-container">
+            <img src="images/Lenovo.png" alt="Brand 4">
+            <p class="brand-name">Lenovo</p>
+        </div>
+        <div class="brand-container">
+            <img src="images/acer.png" alt="Brand 5">
+            <p class="brand-name">Acer</p>
+        </div>
+        <div class="brand-container">
+            <img src="images/msi.png" alt="Brand 6">
+            <p class="brand-name">MSI</p>
+        </div>
+    </section>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="product-info">
+            <h2 class="big-text">Best Laptops For You</h2>
+            <p class="small-text">Experience The Future Of Computing With Our Innovative Laptops</p>
+        </div>
+        <div class="product-slider">
+            <div class="product-container">
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/acer laptop.png" alt="Product 1" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Product Title 1</h3>
+                        <p class="product-price">$99.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/hp laptop.png" alt="Product 2" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Product Title 2</h3>
+                        <p class="product-price">$99.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/dell laptop.png" alt="Product 3" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Product Title 3</h3>
+                        <p class="product-price">$99.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/hp laptop.png" alt="Product 4" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Product Title 4</h3>
+                        <p class="product-price">$99.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/dell laptop.png" alt="Product 5" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Product Title 5</h3>
+                        <p class="product-price">$99.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/acer laptop.png" alt="Product 6" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Product Title 6</h3>
+                        <p class="product-price">$99.99</p>
+                    </div>
+                </div>
+                <!-- Add more product cards as needed -->
+            </div>
+        </div>
+    </section>
+    <!-- -------------------------------------------------------------------------------------- -->
+
+    <!-- How To Rent Laptop Section -->
+    <section class="Rent laptop process">
+        <section class="product-section">
+            <div class="product-info">
+                <h2 class="big-text">How To Rent Laptop?</h2>
+                <p class="small-text">Discover A World Of Possibilities With Our Innovative Laptops</p>
+            </div>
+            <div class="process-container">
+                <div class="process-card">
+                    <div class="image-container">
+                        <img src="images/select product.png" alt="Product 1" class="product-image">
+                    </div>
+                    <div class="process-details">
+                        <h3 class="process-title">Product Title 1</h3>
+                        <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                            sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                    </div>
+                </div>
+                <div class="process-card">
+                    <div class="image-container">
+                        <img src="images/payment.png" alt="Product 1" class="product-image">
+                    </div>
+                    <div class="process-details">
+                        <h3 class="process-title">Product Title 1</h3>
+                        <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                            sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                    </div>
+                </div>
+                <div class="process-card">
+                    <div class="image-container">
+                        <img src="images/Delivery.png" alt="Product 1" class="product-image">
+                    </div>
+                    <div class="process-details">
+                        <h3 class="process-title">Product Title 1</h3>
+                        <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                            sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                    </div>
+                </div>
+                <div class="process-card">
+                    <div class="image-container">
+                        <img src="images/Post rental .png" alt="Product 1" class="product-image">
+                    </div>
+                    <div class="process-details">
+                        <h3 class="process-title">Product Title 1</h3>
+                        <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                            sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                    </div>
+                </div>
+
+                <!-- Repeat the above process-card structure for other cards -->
+            </div>
+        </section>
+
+        <!-- -------------------------------------------------------------------------------------- -->
+        <!-- why choose us section -->
+        <section class="Why choose us process">
+            <section class="process-section">
+                <div class="process-info">
+                    <h2 class="big-text">Why Choose Us</h2>
+                    <p class="small-text">Discover A World Of Possibilities With Our Innovative Laptops</p>
+                </div>
+                <div class="process-container">
+                    <div class="process-card">
+                        <div class="image-container">
+                            <img src="images/finest-quality-product.png" alt="Product 1" class="product-image">
+                        </div>
+                        <div class="process-details">
+                            <h3 class="process-title">Finest-Quality Products</h3>
+                            <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Vivamus
+                                sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                        </div>
+                    </div>
+                    <div class="process-card">
+                        <div class="image-container">
+                            <img src="images/free-relocation.png" alt="Product 1" class="product-image">
+                        </div>
+                        <div class="process-details">
+                            <h3 class="process-title">Free Relocation</h3>
+                            <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Vivamus
+                                sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                        </div>
+                    </div>
+                    <div class="process-card">
+                        <div class="image-container">
+                            <img src="images/free-maintenance.png" alt="Product 1" class="product-image">
+                        </div>
+                        <div class="process-details">
+                            <h3 class="process-title">Free Maintenance</h3>
+                            <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Vivamus
+                                sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                        </div>
+                    </div>
+                    <div class="process-card">
+                        <div class="image-container">
+                            <img src="images/keep-upgrading.png" alt="Product 1" class="product-image">
+                        </div>
+                        <div class="process-details">
+                            <h3 class="process-title">Keep Upgrading</h3>
+                            <p class="process-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Vivamus
+                                sagittis ipsum non ex pretium, eget posuere mi blandit.</p>
+                        </div>
+                    </div>
+
+                    <!-- Repeat the above process-card structure for other cards -->
+                </div>
+            </section>
+            <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <!-- Google Review Section -->
+            <section class="google-reviews-section">
+                <img src="images/google reviews.png" alt="Google Logo" class="google-logo">
+                <h2>Leave Us a Google Review</h2>
+                <p>We appreciate your feedback! Share your experience with us.</p>
+                <button class="google-review-btn" onclick="redirectToGoogleReviews()">Write a Review</button>
+            </section>
+            <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+            <section class="Happy Customers">
+                <section class="Happy">
+                    <div class="Happy">
+                        <h2 class="big-text">Over 1.5 Lac Happy Customers</h2>
+                        <p class="small-text">Here’s what they have to say about their ABCOM experience.</p>
+                    </div>
+                    <div class="Happy-container">
+                        <div class="Happy-card">
+                            <div class="Happy-details">
+                                <h3 class="Happy-title" id="total-customers">0</h3>
+                                <p class="happy process-description">Total Rented Laptop</p>
+                            </div>
+                        </div>
+                        <div class="Happy-card">
+                            <div class="Happy-details">
+                                <h3 class="Happy-title" id="satisfied-customers">0</h3>
+                                <p class="happy process-description">Satisfied Customers</p>
+                            </div>
+                        </div>
+                        <div class="Happy-card">
+                            <div class="Happy-details">
+                                <h3 class="Happy-title" id="total-cities">0</h3>
+                                <p class="happy process-description">Cities</p>
+                            </div>
+                        </div>
+                        <div class="Happy-card">
+                            <div class="Happy-details">
+                                <h3 class="Happy-title" id="year-started">0</h3>
+                                <p class="happy process-description">Year Started</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <section class="contact-us-section">
+                <div class="contact-container">
+                    <h2>Contact Us</h2>
+                    <p class="contact-description">Have any questions or inquiries? Feel free to reach out to us!</p>
+                    <button class="request-call-btn" onclick="openContactForm()">Request Call</button>
+                </div>
+            </section>
+
+            <!-- ------------------------------------------------------------------------------------------------------------------------- -->
+            <!-- Footer -->
+            <footer>
+                <div class="social-icons">
+                    <a href="#"><img src="images/facebook.png" alt="Social Icons"></a>
+                    <a href="#"><img src="images/twitter.png" alt="Social Icons"></a>
+                    <a href="#"><img src="images/instagram.png" alt="Social Icons"></a>
+                    <a href="#"><img src="images/youtube.png" alt="Social Icons"></a>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Blog</a>
+                    <a href="#">FAQ's</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms and Conditions</a>
+                </div>
+                <p>&copy; ©2024 ABCOM.in | All Rights Reserved ABcom Private Limited</p>
+            </footer>
+
+
+            <script src="main.js"></script>
+            
+</body>
+
+</html>
